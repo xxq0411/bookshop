@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body{
+            padding:0px;
+            margin:0px;
+            background:#222;
+            font-family:'Karla' , sans-serif;
+            color:#fff;
+            height:100%;
+            overflow:hidden;
+        }
+        h1{
+            z-index:1000;
+            position:fixed;
+            top:50%;
+            right:50%;
+            transform:translateX(-50%) translateY(-100%);
+            font-size:58px;
+            border:2px solid #fff;
+            padding:7.5px 15px;
+            background:rgba(0, 0, 0, 0.5);
+            border-radius:5px;
+            overflow:hidden;
+        }
+        span{
+            position:relative;
+            display:inline-block;
+            animation: drop 0.75s;
+        }
+        @keyframes drop{
+            0% {
+                transform:translateY(-100px);
+                opacity:1;
+            }
+            0% {
+                transform: translateY(-100px);
+                opacity: 1;
+            }
+            90%{
+                transform:translateY(10px);
+                opacity: 1;
+            }
+            100%{
+                transform:translateY(0px);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>
+        201<span>8</span>🎉
+    </h1>
+</body>
+</html>

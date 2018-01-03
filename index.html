@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .bookURL{
+            display: inline-block;
+            text-decoration:none;
+            width:100px;
+            padding:10px;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            overflow:hidden;
+
+        }
+        .price-span{
+            display: inline-block;
+            width:100px;
+            padding:10px;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            overflow:hidden;
+        }
+        .start-span{
+            display: inline-block;
+            width:100px;
+            padding:10px;
+
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            overflow:hidden;
+        }
+        .tltle{
+            font-size:x-large;
+        }
+
+    </style>
+</head>
+<body>
+<p>
+    <span class="bookURL tltle" >name</span>
+    <span class="price-span tltle" >price</span>
+    <span class="start-span tltle" >start</span>
+</p>
+<div class="my-book"></div>
+<script src="jquery-3.2.1.js"></script>
+<script>
+
+    $.getJSON("https://www.easy-mock.com/mock/5a2955fb70188c51fc72e1ca/book/getBookList" +
+        "").done(handleResponse);
+
+    function handleResponse(response){
+        console.log(response);
+        var books = response.data.books;
+        for (number = 0 ;number < books.length; number++){
+            var bookName = books[number].name;
+            var bookPrice = books[number].price;
+            var bookStart = books[number].start;
+            var bookURL = books[number].url;
+
+            var a = document.createElement("a");
+            a.innerHTML = bookName;
+            a.href = bookURL;
+            a.className = "bookURL";
+
+            var startSpan = document.createElement("span");
+            startSpan.innerHTML = bookStart;
+            startSpan.title = bookStart.length + "个星星";
+            startSpan.className = "start-span";
+
+            var priceSpan = document.createElement("span");
+            priceSpan.innerHTML = bookPrice;
+            priceSpan.className = "price-span";
+
+
+            var pp = document.createElement("p");
+            pp.appendChild(a);
+            pp.appendChild(priceSpan);
+            pp.appendChild(startSpan);
+
+            document.getElementsByClassName("my-book")[0].appendChild(pp);
+
+        }
+    }
+</script>
+</body>
+</html>
