@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="text" class="wrapper">
+        <!--content by js-->
+    </div>
+    <script>
+        var text = "hover me";
+        var creatLetterArray =function creatLetterArray (string){
+           return string.split('');
+        }
+        var creatLetterLayer = function creatLetterLayer(array) {
+            return array.map(function (letter) {
+                var layer = "";
+                for(i = 1; i <= 2; i++){
+                    if(letter = ""){
+                        layer += '<span class="space"><span>'
+//                        attation to ""
+                    }elae{
+                        layer += '<span class="letter- ' + i + ' " >' + letter + "</span>";
+                    }
+                }
+                return layer;
+            })
+        }
+
+    </script>
+</body>
+</html>
