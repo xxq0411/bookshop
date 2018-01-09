@@ -17,22 +17,41 @@
     <script>
         var text = "hover me";
         var creatLetterArray =function creatLetterArray (string){
-           return string.split('');
-        }
+            // feng ge
+            return string.split('');
+        };
         var creatLetterLayer = function creatLetterLayer(array) {
             return array.map(function (letter) {
                 var layer = "";
                 for(i = 1; i <= 2; i++){
-                    if(letter = ""){
-                        layer += '<span class="space"><span>'
-//                        attation to ""
-                    }elae{
+                    // 注意 ""，表示如果字母为空格则执行
+                    if(letter == " "){
+                        layer += '<span class="space"></span>'
+                    }else{
                         layer += '<span class="letter- ' + i + ' " >' + letter + "</span>";
                     }
                 }
                 return layer;
             })
-        }
+        };
+
+        var creatLetterContainers = function creatLetterContainers(array) {
+            return array.map(function(item){
+                var container = "";
+                container += '<div class="wrapper">' + item + "</div>";
+                return container;
+            })
+        };
+
+        var outputLayers = new Promise(function(resolve,reject){
+            document.getElementById("text").innerHTML = creatLetterContainers(creatLetterLayer(creatLetterArray(text))).join("");
+            resolve();
+        });
+        var spans = Array.from(document.getElementsByTagName("span"));
+
+
+
+
 
     </script>
 </body>
