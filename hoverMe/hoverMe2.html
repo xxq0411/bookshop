@@ -47,7 +47,22 @@
             document.getElementById("text").innerHTML = creatLetterContainers(creatLetterLayer(creatLetterArray(text))).join("");
             resolve();
         });
+        //将所有Span集合到一个数组中
         var spans = Array.from(document.getElementsByTagName("span"));
+        outputLayers.than(function(){
+            return spans.map(function(span){
+                setTimeout(function(){
+                    span.parentElement.style.width = span.offsetWidth;
+                    span.parentElement.style.height = span.offsetHeight;
+
+                },250)
+            })
+        }).than(function(){
+            var time = 250;
+            return spans.map(function () {
+                span.parentElement.style.top = "0px";
+            },time)
+        })
 
 
 

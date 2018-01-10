@@ -22,7 +22,7 @@
             text-align: center;
             position: relative;
             top: 50%;
-            transform: translateY(-50%);
+            /*transform: translateY(-50%);*/
         }
         #text:hover {
             cursor: default;
@@ -32,9 +32,9 @@
             top: -900px;
             position: relative;
             height: 150px;
-            /* default */
+             /*default */
             width: 90px;
-            /* default */
+            /* defaulst */
             transition: all ease 0.3s;
         }
         #text .wrapper span {
@@ -118,11 +118,13 @@
 
         // then adjust width and height of each letter
         var spans = Array.from(document.getElementsByTagName("span"))
+        console.log(spans)
         outputLayers.then(function () {
             return spans.map(function (span) {
                 setTimeout(function () {
                     span.parentElement.style.width = span.offsetWidth + "px";
                     span.parentElement.style.height = span.offsetHeight + "px";
+                    console.log(span.offsetWidth);
                 }, 250);
             });
         }).then(function () {
