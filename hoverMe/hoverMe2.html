@@ -7,67 +7,126 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        html, body {
+            background-color: #efefef;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        #text {
+            font-family: "Fredoka One", sans-serif;
+            font-size: 6em;
+            line-height: 1em;
+            text-align: center;
+            position: relative;
+            top: 50%;
+            /*transform: translateY(-50%);*/
+        }
+        #text:hover {
+            cursor: default;
+        }
+        #text .wrapper  {
+            display: inline-block;
+            top: -900px;
+            position: relative;
+            height: 150px;
+            /*default */
+            width: 90px;
+            /* defaulst */
+            transition: all ease 0.3s;
+        }
+        #text .wrapper span {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transition: all ease 0.3s;
+        }
+        #text .wrapper span.letter-2 {
+            color: rgba(0, 0, 255, 0.5);
+        }
+        #text .wrapper span.letter-1 {
+            color: rgba(255, 0, 0, 0.5);
+            z-index: 1;
+        }
+        #text .wrapper span.letter-1:hover {
+            top: -3px;
+            right: -3px;
+        }
+        #text .wrapper span.letter-1:hover ~ .letter-2 {
+            top: 3px;
+            right: 3px;
+        }
+        #text .wrapper span.space {
+            padding: 0;
+            min-width: 30px;
+            display: inline-block;
+        }
+
 
     </style>
 </head>
 <body>
-    <div id="text" class="wrapper">
-        <!--content by js-->
-    </div>
-    <script>
-        var text = "hover me";
-        var creatLetterArray =function creatLetterArray (string){
-            // feng ge
-            return string.split('');
-        };
-        var creatLetterLayer = function creatLetterLayer(array) {
-            return array.map(function (letter) {
-                var layer = "";
-                for(i = 1; i <= 2; i++){
-                    // 注意 ""，表示如果字母为空格则执行
-                    if(letter == " "){
-                        layer += '<span class="space"></span>'
-                    }else{
-                        layer += '<span class="letter- ' + i + ' " >' + letter + "</span>";
-                    }
+<div id="text" class="wrapper">
+    <!--content by js-->
+</div>
+<script>
+    var text = "hover me";
+    var creatLetterArray = function creatLetterArray(string) {
+        // feng ge
+        return string.split('');
+    };
+    var creatLetterLayer = function creatLetterLayer(array) {
+        return array.map(function (letter) {
+            var layer = "";
+            for (i = 1; i <= 2; i++) {
+                // 注意 ""，表示如果字母为空格则执行
+                if (letter == " ") {
+                    layer += '<span class="space"></span>'
+                } else {
+                    layer += '<span class="letter-' + i + '" >' + letter + "</span>";
                 }
-                return layer;
-            })
-        };
+            }
+            return layer;
+        })
+    };
 
-        var creatLetterContainers = function creatLetterContainers(array) {
-            return array.map(function(item){
-                var container = "";
-                container += '<div class="wrapper">' + item + "</div>";
-                return container;
-            })
-        };
+    var creatLetterContainers = function creatLetterContainers(array) {
+        return array.map(function (item) {
+            var container = "";
+            container += '<div class="wrapper">' + item + "</div>";
+            return container;
+        })
+    };
 
-        var outputLayers = new Promise(function(resolve,reject){
-            document.getElementById("text").innerHTML = creatLetterContainers(creatLetterLayer(creatLetterArray(text))).join("");
-            resolve();
-        });
-        //将所有Span集合到一个数组中
-        var spans = Array.from(document.getElementsByTagName("span"));
-        outputLayers.than(function(){
-            return spans.map(function(span){
-                setTimeout(function(){
-                    span.parentElement.style.width = span.offsetWidth;
-                    span.parentElement.style.height = span.offsetHeight;
+    var outputLayers = new Promise(function (resolve, reject) {
+        document.getElementById("text").innerHTML = creatLetterContainers(creatLetterLayer(creatLetterArray(text))).join("");
+        resolve();
+    });
+    //将所有Span集合到一个数组中
+    var spans = Array.from(document.getElementsByTagName("span"));
+    outputLayers.then(function () {
+        return spans.map(function (span) {
+            setTimeout(function () {
+                span.parentElement.style.width = span.offsetWidth + "px";
+                span.parentElement.style.height = span.offsetHeight +"px";
+                console.log(span.offsetWidth);
 
-                },250)
-            })
-        }).than(function(){
-            var time = 250;
-            return spans.map(function () {
+            }, 250)
+        })
+    }).then(function () {
+        var time = 250;
+        return spans.map(function (span) {
+            time +=75;
+            setTimeout(function () {
                 span.parentElement.style.top = "0px";
             },time)
-        })
+        });
+
+    });
 
 
-
-
-
-    </script>
+</script>
 </body>
 </html>
