@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            padding:0px;
+            margin:0px;
+            background-color:#222;
+            font-family:'Karla',sans-serif;
+            /*视口被平均为100个vw，所有100vw相当于视口宽度*/
+            width:100vw;
+        }
+        /* * 表示选择所有元素，body * 表示选择body内部的所有元素*/
+        body *{
+            margin:0px;
+            padding:0px;
+        }
+        /*opacity表示透明度，当值为0时，完全透明 */
+        nav menuitem{
+            position:relative;
+            display:block;
+            opacity:0;
+            cursor:pointer;
+        }
+        /*该选择器表示父元素为nav内部的menuitem的所有menu元素 */
+        /*pointer-events:none 表示被选元素永远不可能成为鼠标事件的target*/
+        nav menuitem > menu {
+            position:absolute;
+            pointer-events:none;
+
+        }
+
+    </style>
+</head>
+<body>
+<nav>
+    <menu>
+        <menuitem id="demo1">
+            <a>drop</a>
+            <menu>
+                <menuitem><a>about</a></menuitem>
+                <menuitem>
+                    <a>settings</a>
+                    <menu>
+                        <menuitem><a>Test 1</a></menuitem>
+                        <menuitem><a>Test 2</a></menuitem>
+                        <menuitem><a>Test 3</a></menuitem>
+                        <menuitem><a>Test 4</a></menuitem>
+                    </menu>
+                </menuitem>
+                <menuitem><a>help</a></menuitem>
+                <menuitem id="demo2">
+                    <a>more</a>
+                    <menu>
+                        <menuitem id="demo3">
+                            <a>deeper</a>
+                            <menu>
+                                <menuitem><a>deep 1</a></menuitem>
+                                <menuitem><a>deep 2</a></menuitem>
+                                <menuitem><a>deep 3</a></menuitem>
+                            </menu>
+                        </menuitem>
+                        <menuitem><a>test</a></menuitem>
+                    </menu>
+                </menuitem>
+            </menu>
+        </menuitem>
+        <menuitem><a>no drop</a></menuitem>
+    </menu>
+</nav>
+</body>
+</html>
