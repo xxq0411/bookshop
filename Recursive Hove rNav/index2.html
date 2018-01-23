@@ -12,63 +12,165 @@
             /*视口被平均为100个vw，所有100vw相当于视口宽度*/
             width:100vw;
         }
-        /* * 表示选择所有元素，body * 表示选择body内部的所有元素*/
+        /*    * 表示选择所有元素，body * 表示选择body内部的所有元素*/
         body *{
             margin:0px;
             padding:0px;
         }
-        /*opacity表示透明度，当值为0时，完全透明 */
+        /*!*opacity表示透明度，0-1,当值为0时，完全透明 *!*/
+        /*position:relative 相对于自身正常位置定位，absolute相对于父元素定位
+        absolute元素的父元素需要是relative元素*/
+        /*block后的元素不换行*/
         nav menuitem{
             position:relative;
             display:block;
             opacity:0;
             cursor:pointer;
         }
-        /*该选择器表示父元素为nav内部的menuitem的所有menu元素 */
-        /*pointer-events:none 表示被选元素永远不可能成为鼠标事件的target*/
+        /*!*该选择器表示父元素为nav内部的menuitem的所有menu元素 *!*/
+        /* pointer-events:none 表示被选元素永远不可能成为鼠标事件的target,应该是防止鼠标事件的不灵敏吧。*/
         nav menuitem > menu {
             position:absolute;
             pointer-events:none;
-
         }
+        nav > menu {
+            /*将所有父级元素为nav的menu元素变为弹性盒子，menu里的元素变为felx项目*/
+            display:flex;
+        }
+        nav > menu > menuitem{
+            pointer-events:all;
+            opacity:1;
+        }
+        /*!*white-space处理空白符，nowrap表示不换行，文字一直在一行写，遇到br标签换行*!*/
+        menu menuitem a {
+            white-space:nowrap;
+            display:block;
+        }
+        /*!*当鼠标悬浮于menuitem元素时其子元素menu的样式*!*/
+        menuitem:hover >menu {
+            pointer-events:initial;
+        }
+        menuitem:hover > menu > menuitem{
+            opacity:1;
+        }
+        nav > menu >menuitem menuitem menu {
+            transform:translateX(100%);
+            top:0;
+            right:0;
+        }
+        nav {
+            margin-top: 40px;
+            margin-left: 40px;
+        }
+
+        nav a {
+            background:#75F;
+            color:#FFF;
+            min-width:190px;
+            transition: background 2s, color 2s, transform 2s;
+            margin:0px 6px 6px 0px;
+            padding:20px 40px;
+            box-sizing:border-box;
+            border-radius:3px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+            position:relative;
+        }
+
+        nav a:hover:before {
+            content: '';
+            top:0;left:0;
+            position:absolute;
+            background:rgba(0, 0, 0, 0.2);
+            width:100%;
+            height:100%;
+        }
+
+        nav > menu > menuitem > a + menu:after{
+            content: '';
+            position:absolute;
+            border:10px solid transparent;
+            border-top: 10px solid white;
+            left:12px;
+            top: -40px;
+        }
+        nav menuitem > menu > menuitem > a + menu:after{
+            content: '';
+            position:absolute;
+            border:10px solid transparent;
+            border-left: 10px solid white;
+            top: 20px;
+            left:-180px;
+            transition: opacity 0.6s, transform 0s;
+        }
+
+        nav > menu > menuitem > menu > menuitem{
+            transition: transform 0.6s, opacity 0.6s;
+            transform:translateY(150%);
+            opacity:0;
+        }
+        nav > menu > menuitem:hover > menu > menuitem,
+        nav > menu > menuitem.hover > menu > menuitem{
+            transform:translateY(0%);
+            opacity: 1;
+        }
+
+        menuitem > menu > menuitem > menu > menuitem{
+            transition: transform 0.6s, opacity 0.6s;
+            transform:translateX(195px) translateY(0%);
+            opacity: 0;
+        }
+        menuitem > menu > menuitem:hover > menu > menuitem,
+        menuitem > menu > menuitem.hover > menu > menuitem{
+            transform:translateX(0) translateY(0%);
+            opacity: 1;
+        }
+
 
     </style>
 </head>
 <body>
-<nav>
-    <menu>
-        <menuitem id="demo1">
-            <a>drop</a>
-            <menu>
-                <menuitem><a>about</a></menuitem>
-                <menuitem>
-                    <a>settings</a>
-                    <menu>
-                        <menuitem><a>Test 1</a></menuitem>
-                        <menuitem><a>Test 2</a></menuitem>
-                        <menuitem><a>Test 3</a></menuitem>
-                        <menuitem><a>Test 4</a></menuitem>
-                    </menu>
-                </menuitem>
-                <menuitem><a>help</a></menuitem>
-                <menuitem id="demo2">
-                    <a>more</a>
-                    <menu>
-                        <menuitem id="demo3">
-                            <a>deeper</a>
-                            <menu>
-                                <menuitem><a>deep 1</a></menuitem>
-                                <menuitem><a>deep 2</a></menuitem>
-                                <menuitem><a>deep 3</a></menuitem>
-                            </menu>
-                        </menuitem>
-                        <menuitem><a>test</a></menuitem>
-                    </menu>
-                </menuitem>
-            </menu>
-        </menuitem>
-        <menuitem><a>no drop</a></menuitem>
-    </menu>
-</nav>
+    <nav>
+        <menu>
+            <menuitem id="demo1">
+                <a>drop</a>
+                <menu>
+                    <menuitem>
+                        <a>about</a>
+                    </menuitem>
+                    <menuitem>
+                        <a>sttings</a>
+                        <menu>
+                            <menuitem><a>Test 1</a></menuitem>
+                            <menuitem><a>Test 2</a></menuitem>
+                            <menuitem><a>Test 3</a></menuitem>
+                            <menuitem><a>Test 4</a></menuitem>
+                        </menu>
+                    </menuitem>
+                    <menuitem>
+                        <a>help</a>
+                    </menuitem>
+                    <menuitem  id="demo2">
+                        <a>more</a>
+                        <menu>
+                            <menuitem id="demo3">
+                                <a>deeper</a>
+                                <menu>
+                                    <menuitem><a>deep 1</a></menuitem>
+                                    <menuitem><a>deep 2</a></menuitem>
+                                    <menuitem><a>deep 3</a></menuitem>
+                                </menu>
+                            </menuitem>
+                            <menuitem>
+                                <a>test</a>
+                            </menuitem>
+                        </menu>
+                    </menuitem>
+                </menu>
+            </menuitem>
+            <menuitem>
+                <a>no drop</a>
+            </menuitem>
+        </menu>
+    </nav>
 </body>
 </html>
