@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin:0px;
+        padding:0px;
+        box-sizing:border-box;
+    }
+    /* letter-spacing字符间距*/
+    body{
+        background-color:#1e1e1e;
+        background-image:url("1.jpg");
+        background-size:cover;
+        height:100vh;
+        font-family: "Raleway", sans-serif;
+        letter-spacing: 1px;
+    }
+    h1{
+        text-align:center;
+        color:#fff;
+        padding-top:20px;
+    }
+     /* list-style 设置列表属性，即display 设置为list-item的元素，一般在XHTML或html中只能用在li元素上*/
+    ul{
+        list-style:none;
+    }
+    nav {
+        height:40px;
+        margin:40px auto;
+        background-color:rgba(23,23,50,0.7);
+        text-align:center;
+        border-radius:4px;
+    }
+    /* flex布局 */
+    .main {
+        display:flex;
+        justify-content:center;
+    }
+    /* margin :2% 百分比是基于父元素宽度的*/
+    .main > li {
+        margin: 0 2%;
+    }
+    /* 父元素为main的所有li元素内部的a元素*/
+    /* text-transform控制文本的大小写，capitalize 表示文本中每个单词开头大写 */
+    .main > li a{
+        border-left:1px solid rgba(23,23,50,1);
+    }
+    a {
+        text-decoration:none;
+        color:#ffe;
+        text-transform:capitalize;
+        font-family: "Raleway", sans-serif;
+        display:block;
+        padding:10px 15px;
+        font-size:16px;
+        transition:background-color 0.5s ease-in-out;
+    }
+    a:hover {
+        background-color:#621818;
+    }
+    /* transform-origin 定义元素变形的原点的位置，一般与transfrom联合起来一起使用。top center 表示0% 50%*/
+    .drop li{
+        /*opacity:0;*/
+        transform-origin:top center;
+    }
+    .drop li a {
+        background-color: rgba(23,23,50,0.7);
+        padding:10px 0;
+
+    }
+    /*CSS 伪类 :first-of-type表示一组兄弟元素中其类型的第一个元素。
+    本例中饭表示class为main的元素内部的li元素在hover状态下 class为menu1的元素内部的li元素的父元素（ul
+    class=drop menu1）的第一个li子元素（content=Home）
+    */
+
+    .main li:hover .menu1 li:first-of-type{
+
+    }
+</style>
+<body>
+    <h1>Drop Menu Pure CSS</h1>
+        <nav>
+            <ul class="main">
+                <li>
+                    <a href="#">Home</a>
+                    <ul class="drop menu1">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">news</a></li>
+                        <li><a href="#">about</a></li>
+                        <li><a href="#">content</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">news</a>
+                    <ul class="drop menu2">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">news</a></li>
+                        <li><a href="#">content</a></li>
+                        <li><a href="#">about</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">content</a>
+                    <ul class="drop menu3">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">news</a></li>
+                        <li><a href="#">content</a></li>
+                        <li><a href="#">about</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">works</a>
+                    <ul class="drop menu4">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">news</a></li>
+                        <li><a href="#">content</a></li>
+                        <li><a href="#">about</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">team</a>
+                    <ul class="drop menu5">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">news</a></li>
+                        <li><a href="#">content</a></li>
+                        <li><a href="#">about</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">about</a>
+                    <ul class="drop menu6">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">news</a></li>
+                        <li><a href="#">content</a></li>
+                        <li><a href="#">about</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <a target="_blank" href="http://codepen.io/Moslim" class="white-mode">OTHER PENS</a>
+</body>
+</html>
